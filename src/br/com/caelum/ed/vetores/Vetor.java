@@ -7,22 +7,7 @@ public class Vetor {
 
     private Object[] objetos = new Object[100];
 
-    private int totalDeObjetos = 0;                                   //totalDeAluno é o índice
-
-
-    private boolean posicaoOcupada(int posicao){
-        return posicao >= 0 && posicao <= this.totalDeObjetos;
-    }
-
-    private void garanteEspaco(){
-        if (this.totalDeObjetos == this.objetos.length) {                 //se o total de alunos passar o tamanho da array
-            Aluno[] novaArray = new Aluno[this.objetos.length*2];
-            for (int i = 0; i < this.objetos.length; i++) {
-                novaArray[i] = (Aluno) this.objetos[i];
-            }
-            this.objetos = novaArray;
-        }
-    }
+    private int totalDeObjetos = 0;                                   
 
     public void adiciona(Aluno aluno){
 
@@ -33,10 +18,10 @@ public class Vetor {
         this.objetos[this.totalDeObjetos] = aluno;
         this.totalDeObjetos++;
 
-        for (int i=0; i < this.objetos.length; i++) {   //criação de uma variavel de indice e laço de repetição.
-            if (this.objetos[i] == null) {              //se a posição tiver valor null,
-                this.objetos[i] = aluno;                //a posição vai receber o valor alunos.
-                break;                                  //forçar parada.
+        for (int i=0; i < this.objetos.length; i++) {   
+            if (this.objetos[i] == null) {              
+                this.objetos[i] = aluno;               
+                break;                                 
 
             }
         }
@@ -71,7 +56,7 @@ public class Vetor {
         this.totalDeObjetos--;
     }
 
-    public boolean contem(Aluno aluno) {            //método pra saber se contem algum aluno no vetor
+    public boolean contem(Aluno aluno) {            
 
         for (int i = 0; i<this.objetos.length; i++){
             if (aluno == this.objetos[i]){
@@ -86,7 +71,7 @@ public class Vetor {
     }
 
     public String toString(){
-        if(this.totalDeObjetos==0) {                      //caso a quantidade de espaços ocupados no vetor seja 0 retorna só []
+        if(this.totalDeObjetos==0) {                      
             return "[]";
         }
         StringBuilder builder = new StringBuilder();
@@ -101,6 +86,20 @@ public class Vetor {
         builder.append("]");
         return builder.toString();
 
+    }
+    
+    private boolean posicaoOcupada(int posicao){
+        return posicao >= 0 && posicao <= this.totalDeObjetos;
+    }
+    
+        private void garanteEspaco(){
+        if (this.totalDeObjetos == this.objetos.length) {                 
+            Aluno[] novaArray = new Aluno[this.objetos.length*2];
+            for (int i = 0; i < this.objetos.length; i++) {
+                novaArray[i] = (Aluno) this.objetos[i];
+            }
+            this.objetos = novaArray;
+        }
     }
 
 }
